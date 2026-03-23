@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cipher Run | Rialo Scenario Builder + Idea Validator</title>
+    <meta name='description' content='Simulate real-world scenarios on Rialo and validate your ideas with AI. Built by MystiqueMide for the Rialo community.' />
+    <meta property='og:title' content='Cipher Run | Built by MystiqueMide' />
+    <meta property='og:description' content='Simulate real-world oracle scenarios on Rialo. Validate your Web3 ideas with AI. Share your alpha.' />
+    <meta property='og:image' content='https://cdn.prod.website-files.com/6883572e6ebf68cfe676dd65/6883572e6ebf68cfe676dd82_rialo-logo.svg' />
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta name='twitter:site' content='@MystiqueMide' />
+    <link rel='icon' type='image/svg+xml' href='https://cdn.prod.website-files.com/6883572e6ebf68cfe676dd65/6883572e6ebf68cfe676dd82_rialo-logo.svg' />
+    <script>
+      // Fix for whatwg-fetch/cross-fetch attempting to overwrite window.fetch
+      (function() {
+        try {
+          const originalFetch = window.fetch;
+          const descriptor = Object.getOwnPropertyDescriptor(window, 'fetch') || Object.getOwnPropertyDescriptor(Window.prototype, 'fetch');
+          if (descriptor && descriptor.configurable) {
+            Object.defineProperty(window, 'fetch', {
+              get: function() { return originalFetch; },
+              set: function() { console.warn("Prevented overwrite of window.fetch"); },
+              configurable: true,
+              enumerable: true
+            });
+          }
+        } catch (e) {
+          console.error("Error fixing fetch descriptor:", e);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
