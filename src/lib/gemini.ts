@@ -10,7 +10,7 @@ async function callAI(prompt: string): Promise<string> {
       'X-Title': 'Cipher Run'
     },
     body: JSON.stringify({
-      model: 'deepseek/deepseek-chat:free',
+      model: 'google/gemini-2.0-flash-exp:free',
       messages: [{ role: 'user', content: prompt }],
       max_tokens: 1000
     })
