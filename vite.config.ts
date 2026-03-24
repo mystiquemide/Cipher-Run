@@ -11,9 +11,13 @@ export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
     plugins: [react(), tailwindcss()],
+    define: {
+      global: 'globalThis',
+    },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
+        'buffer': 'buffer',
         'whatwg-fetch': path.resolve(__dirname, 'src/empty.js'),
         'whatwg-fetch/fetch.js': path.resolve(__dirname, 'src/empty.js'),
         'whatwg-fetch/dist/fetch.umd.js': path.resolve(__dirname, 'src/empty.js'),
@@ -23,6 +27,7 @@ export default defineConfig(({mode}) => {
       },
     },
     optimizeDeps: {
+      include: ['buffer'],
       exclude: ['whatwg-fetch', 'cross-fetch'],
     },
     server: {
