@@ -10,26 +10,16 @@ async function callAI(prompt: string): Promise<string> {
       'X-Title': 'Cipher Run'
     },
     body: JSON.stringify({
-      model: 'openrouter/free',
+      model: 'openrouter/auto',
       messages: [{ role: 'user', content: prompt }],
       max_tokens: 1000
     })
   });
   const data = await response.json();
-  console.log('OpenRouter response:', JSON.stringify(data).slice(0, 200));
   if (!data.choices || !data.choices[0]) {
-  console.error('OpenRouter unexpected response:', JSON.stringify(data));
-  throw new Error(data.error?.message || 'OpenRouter returned no choices');
-}
-return data.choices[0].message.content;
-```
-
-This will log the actual response so we can see what OpenRouter is sending back.
-
-**After committing, open the browser console (F12) on cipher-run.vercel.app, run a simulation, and tell me what the console prints for:**
-```
-OpenRouter response:
-OpenRouter unexpected response:
+    throw new Error(data.error?.message || 'No response from AI');
+  }
+  return data.choices[0].message.content;
 }
 
 export async function simulateScenario(
